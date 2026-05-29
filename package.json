@@ -1,0 +1,25 @@
+{
+  "name": "laboratory-safety-management-system",
+  "version": "1.0.0",
+  "description": "Stub-only BCE scaffold for a laboratory safety management system",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [
+    "express",
+    "bce",
+    "laboratory",
+    "safety",
+    "scaffold"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
