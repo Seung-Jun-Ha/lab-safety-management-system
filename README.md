@@ -59,7 +59,7 @@ mvn spring-boot:run
 ## 개발 가이드 / 체크리스트
 - UI(프론트)는 `src/main/resources/static/index.html`에 보존되어 있습니다. 버튼은 현재 엔드포인트로 포워딩되도록 되어 있어, 각 기능에 대해 별도 컨트롤러/뷰를 구현하세요.
 - 각 도메인별로 `controller`, `service`, `repository`, `model` 폴더를 사용해 SDD 평면 구조를 유지하세요.
-- 데이터베이스: 기본은 H2(in-memory)입니다. 영속 DB(MySQL 등)로 전환하려면 `application.properties`를 수정하고 `pom.xml` 의 드라이버 의존성을 추가하세요.
+<!-- DB note removed per request -->
 - 테스트: 핵심 유스케이스부터 단위 테스트(JUnit 5)와 통합 테스트(SpringBootTest) 추가 권장
 
 ## 커밋 & 배포(간단)
@@ -70,5 +70,3 @@ git add -A
 git commit -m "Implement <작업 내용>"
 git push origin main
 ```
-
-더 자세한 항목(환경변수, CI 설정, DB 마이그레이션 등)을 원하시면 확장해 드리겠습니다.
