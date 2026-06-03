@@ -1,36 +1,39 @@
 package com.safety.model;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Positive;
 import java.time.LocalDate;
 
-public class WasteInfo {
+public class WasteInfoRegisterDto {
 
-    private String wasteId;
+    @NotBlank
     private String typeId;
-    private String typeName;
+
+    @NotBlank
     private String labId;
+
+    @NotNull
+    @Positive
     private Double quantity;
+
+    @NotBlank
     private String unit;
+
+    @NotNull
+    @PastOrPresent
     private LocalDate generatedDate;
 
-    public WasteInfo() {
+    public WasteInfoRegisterDto() {
     }
 
-    public WasteInfo(String wasteId, String typeId, String typeName, String labId, Double quantity, String unit, LocalDate generatedDate) {
-        this.wasteId = wasteId;
+    public WasteInfoRegisterDto(String typeId, String labId, Double quantity, String unit, LocalDate generatedDate) {
         this.typeId = typeId;
-        this.typeName = typeName;
         this.labId = labId;
         this.quantity = quantity;
         this.unit = unit;
         this.generatedDate = generatedDate;
-    }
-
-    public String getWasteId() {
-        return wasteId;
-    }
-
-    public void setWasteId(String wasteId) {
-        this.wasteId = wasteId;
     }
 
     public String getTypeId() {
@@ -39,14 +42,6 @@ public class WasteInfo {
 
     public void setTypeId(String typeId) {
         this.typeId = typeId;
-    }
-
-    public String getTypeName() {
-        return typeName;
-    }
-
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
     }
 
     public String getLabId() {
