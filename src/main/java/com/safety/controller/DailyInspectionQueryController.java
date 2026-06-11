@@ -1,14 +1,26 @@
 package com.safety.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.safety.model.DailyInspectionSummaryDto;
+import com.safety.model.InspectionSearchCriteria;
+import com.safety.service.DailyInspectionQueryService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/inspection")
+@RequestMapping("/api/lab/inspection/search")
 public class DailyInspectionQueryController {
 
-    @GetMapping("/search")
-    public void searchDailyInspection() {
+    private final DailyInspectionQueryService dailyInspectionQueryService;
+
+    public DailyInspectionQueryController(DailyInspectionQueryService dailyInspectionQueryService) {
+        this.dailyInspectionQueryService = dailyInspectionQueryService;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<DailyInspectionSummaryDto>> getDashboardSummary(
+            @ModelAttribute InspectionSearchCriteria criteria) {
+        List<DailyInspectionSummaryDto> summaryList = dailyInspectionQueryService.searchSummary(criteria);
+        return ResponseEntity.ok(summaryList);
     }
 }
