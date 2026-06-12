@@ -18,7 +18,7 @@ public class AlertLogService {
     @Autowired
     public AlertLogService(AlertLogRepository alertLogRepository) {
         this.alertLogRepository = alertLogRepository;
-        this.alertLogs = null;
+        this.alertLogs = new ArrayList<>();
     }
 
     public AlertLogService() {
