@@ -2,7 +2,7 @@ package com.safety.model;
 
 import java.time.LocalDate;
 
-public class WasteInfo {
+public class WasteInfoResponseDto {
 
     private String wasteId;
     private String typeId;
@@ -12,10 +12,10 @@ public class WasteInfo {
     private String unit;
     private LocalDate generatedDate;
 
-    public WasteInfo() {
+    public WasteInfoResponseDto() {
     }
 
-    public WasteInfo(String wasteId, String typeId, String typeName, String labId, Double quantity, String unit, LocalDate generatedDate) {
+    public WasteInfoResponseDto(String wasteId, String typeId, String typeName, String labId, Double quantity, String unit, LocalDate generatedDate) {
         this.wasteId = wasteId;
         this.typeId = typeId;
         this.typeName = typeName;
@@ -23,6 +23,18 @@ public class WasteInfo {
         this.quantity = quantity;
         this.unit = unit;
         this.generatedDate = generatedDate;
+    }
+
+    public static WasteInfoResponseDto from(WasteInfo wasteInfo) {
+        return new WasteInfoResponseDto(
+            wasteInfo.getWasteId(),
+            wasteInfo.getTypeId(),
+            wasteInfo.getTypeName(),
+            wasteInfo.getLabId(),
+            wasteInfo.getQuantity(),
+            wasteInfo.getUnit(),
+            wasteInfo.getGeneratedDate()
+        );
     }
 
     public String getWasteId() {
