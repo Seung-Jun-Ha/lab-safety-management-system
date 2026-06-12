@@ -1,9 +1,7 @@
 package com.safety.repository;
 
 import com.safety.model.AlertLog;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public class AlertLogRepository {
-
-    public void save(AlertLog alertLog) {
-    }
+public interface AlertLogRepository extends JpaRepository<AlertLog, String> {
 }

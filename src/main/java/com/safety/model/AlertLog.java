@@ -2,42 +2,66 @@ package com.safety.model;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "alert_logs")
 public class AlertLog {
 
-    private String message;
-    private String subSystem;
-    private LocalDateTime createdAt;
+	@Id
+	@Column(name = "log_id", nullable = false, updatable = false)
+	private String logId;
 
-    public AlertLog() {
-    }
+	@Column(nullable = false)
+	private String message;
 
-    public AlertLog(String message, String subSystem, LocalDateTime createdAt) {
-        this.message = message;
-        this.subSystem = subSystem;
-        this.createdAt = createdAt;
-    }
+	@Column(nullable = false)
+	private String subSystem;
 
-    public String getMessage() {
-        return message;
-    }
+	@Column(nullable = false)
+	private LocalDateTime createdAt;
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
+	public AlertLog() {
+	}
 
-    public String getSubSystem() {
-        return subSystem;
-    }
+	public AlertLog(String message, String subSystem, LocalDateTime createdAt) {
+		this.message = message;
+		this.subSystem = subSystem;
+		this.createdAt = createdAt;
+	}
 
-    public void setSubSystem(String subSystem) {
-        this.subSystem = subSystem;
-    }
+	public String getLogId() {
+		return logId;
+	}
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
+	public void setLogId(String logId) {
+		this.logId = logId;
+	}
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public String getSubSystem() {
+		return subSystem;
+	}
+
+	public void setSubSystem(String subSystem) {
+		this.subSystem = subSystem;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
 }
