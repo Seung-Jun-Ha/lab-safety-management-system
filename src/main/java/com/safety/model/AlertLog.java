@@ -24,6 +24,15 @@ public class AlertLog {
 	@Column(nullable = false)
 	private LocalDateTime createdAt;
 
+	public AlertLog() {
+	}
+
+	public AlertLog(String message, String subSystem, LocalDateTime createdAt) {
+		this.message = message;
+		this.subSystem = subSystem;
+		this.createdAt = createdAt;
+	}
+
 	public String getLogId() {
 		return logId;
 	}

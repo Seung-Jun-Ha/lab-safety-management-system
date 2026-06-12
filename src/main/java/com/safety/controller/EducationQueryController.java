@@ -1,14 +1,24 @@
 package com.safety.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.safety.model.EducationSearchCriteria;
+import com.safety.model.ResearcherCategoryResponseDto;
+import com.safety.service.EducationQueryService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/education")
+@RequestMapping("/api/education/queries")
+@RequiredArgsConstructor
 public class EducationQueryController {
 
-    @GetMapping("/search")
-    public void searchEducationRecords() {
+    private final EducationQueryService educationQueryService;
+
+    @GetMapping
+    public ResponseEntity<List<ResearcherCategoryResponseDto>> getResearcherCategories(
+            EducationSearchCriteria criteria) {
+        List<ResearcherCategoryResponseDto> list = educationQueryService.getResearcherCategories(criteria);
+        return ResponseEntity.ok(list);
     }
 }
