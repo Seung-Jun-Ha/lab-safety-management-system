@@ -2,42 +2,28 @@ package com.safety.model;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "alert_logs")
 public class AlertLog {
 
-	@Id
-	@Column(name = "log_id", nullable = false, updatable = false)
-	private String logId;
-
-	@Column(nullable = false)
+	private Long logId;
 	private String message;
-
-	@Column(nullable = false)
 	private String subSystem;
-
-	@Column(nullable = false)
 	private LocalDateTime createdAt;
 
 	public AlertLog() {
 	}
 
-	public AlertLog(String message, String subSystem, LocalDateTime createdAt) {
+	public AlertLog(Long logId, String message, String subSystem) {
+		this.logId = logId;
 		this.message = message;
 		this.subSystem = subSystem;
-		this.createdAt = createdAt;
+		this.createdAt = LocalDateTime.now();
 	}
 
-	public String getLogId() {
+	public Long getLogId() {
 		return logId;
 	}
 
-	public void setLogId(String logId) {
+	public void setLogId(Long logId) {
 		this.logId = logId;
 	}
 
