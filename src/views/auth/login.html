@@ -3,11 +3,41 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>UC-1004 사용자 조회</title>
+  <title>사용자 조회</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 24px; background: #f5f7fb; color: #1f2937; }
+    main { max-width: 920px; margin: 0 auto; background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08); }
+    h1 { margin-top: 0; }
+    .hint { color: #6b7280; margin-top: 4px; }
+    form { display: grid; gap: 12px; margin-top: 20px; }
+    label { display: grid; gap: 6px; font-weight: 700; }
+    input, button { font: inherit; }
+    input { padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 10px; }
+    button { padding: 12px 16px; border: 0; border-radius: 10px; background: #2563eb; color: #fff; font-weight: 700; cursor: pointer; }
+    pre { white-space: pre-wrap; background: #0f172a; color: #e2e8f0; padding: 16px; border-radius: 12px; overflow: auto; }
+  </style>
 </head>
 <body>
   <main>
-    <h1>UC-1004 사용자 조회</h1>
+    <h1>사용자 조회</h1>
+    <p class="hint">API: <code>/api/user/search</code></p>
+    <form id="form">
+      <label>이름 <input name="name" value="홍길동"></label>
+      <label>역할 <input name="role" value="USER"></label>
+      <button type="submit">조회 요청 보내기</button>
+    </form>
+    <h2>응답</h2>
+    <pre id="output">아직 요청이 없습니다.</pre>
   </main>
+  <script>
+    const form = document.getElementById('form');
+    const output = document.getElementById('output');
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const params = new URLSearchParams(new FormData(form)).toString();
+      const response = await fetch(`/api/user/search?${params}`);
+      output.textContent = `status: ${response.status}\n\n${await response.text()}`;
+    });
+  </script>
 </body>
 </html>

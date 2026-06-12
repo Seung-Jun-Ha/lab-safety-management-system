@@ -3,21 +3,46 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>UC-1001 사용자 등록 신청</title>
+  <title>사용자 등록 신청</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 24px; background: #f5f7fb; color: #1f2937; }
+    main { max-width: 920px; margin: 0 auto; background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08); }
+    h1 { margin-top: 0; }
+    .hint { color: #6b7280; margin-top: 4px; }
+    form { display: grid; gap: 12px; margin-top: 20px; }
+    label { display: grid; gap: 6px; font-weight: 700; }
+    input, button { font: inherit; }
+    input { padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 10px; }
+    button { padding: 12px 16px; border: 0; border-radius: 10px; background: #2563eb; color: #fff; font-weight: 700; cursor: pointer; }
+    pre { white-space: pre-wrap; background: #0f172a; color: #e2e8f0; padding: 16px; border-radius: 12px; overflow: auto; }
+  </style>
 </head>
 <body>
   <main>
-    <h1>UC-1001 사용자 등록 신청</h1>
+    <h1>사용자 등록 신청</h1>
+    <p class="hint">API: <code>/api/user/register</code></p>
+    <form id="form">
+      <label>이름 <input name="name" value="홍길동" required></label>
+      <label>부서 ID <input name="deptId" value="LAB-001" required></label>
+      <label>이메일 <input name="email" type="email" value="hong@example.com" required></label>
+      <button type="submit">등록 요청 보내기</button>
+    </form>
+    <h2>응답</h2>
+    <pre id="output">아직 요청이 없습니다.</pre>
   </main>
-</body>
-</html><!doctype html>
-<html lang="ko">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>회원가입</title>
-</head>
-<body>
-  <!-- TODO: 구현 및 단위시험 예정 -->
+  <script>
+    const form = document.getElementById('form');
+    const output = document.getElementById('output');
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const payload = Object.fromEntries(new FormData(form).entries());
+      const response = await fetch('/api/user/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      output.textContent = `status: ${response.status}\n\n${await response.text()}`;
+    });
+  </script>
 </body>
 </html>

@@ -3,21 +3,50 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>UC-2001 연구실 기본정보 등록</title>
+  <title>연구실 기본정보 등록</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 24px; background: #f5f7fb; color: #1f2937; }
+    main { max-width: 920px; margin: 0 auto; background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08); }
+    h1 { margin-top: 0; }
+    .hint { color: #6b7280; margin-top: 4px; }
+    form { display: grid; gap: 12px; margin-top: 20px; }
+    label { display: grid; gap: 6px; font-weight: 700; }
+    input, button { font: inherit; }
+    input { padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 10px; }
+    button { padding: 12px 16px; border: 0; border-radius: 10px; background: #2563eb; color: #fff; font-weight: 700; cursor: pointer; }
+    pre { white-space: pre-wrap; background: #0f172a; color: #e2e8f0; padding: 16px; border-radius: 12px; overflow: auto; }
+  </style>
 </head>
 <body>
   <main>
-    <h1>UC-2001 연구실 기본정보 등록</h1>
+    <h1>연구실 기본정보 등록</h1>
+    <p class="hint">API: <code>/api/lab/register</code></p>
+    <form id="form">
+      <label>연구실 이름 <input name="labName" value="화학실험실" required></label>
+      <label>건물 ID <input name="buildingId" value="B-101" required></label>
+      <label>층수 <input name="floor" type="number" value="3" required></label>
+      <label>유형 <input name="type" value="교육연구" required></label>
+      <label>점검 대상 여부 <input name="inspectionTarget" type="checkbox" checked></label>
+      <button type="submit">등록 요청 보내기</button>
+    </form>
+    <h2>응답</h2>
+    <pre id="output">아직 요청이 없습니다.</pre>
   </main>
-</body>
-</html><!doctype html>
-<html lang="ko">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>연구실 정보 등록</title>
-</head>
-<body>
-  <!-- TODO: 구현 및 단위시험 예정 -->
+  <script>
+    const form = document.getElementById('form');
+    const output = document.getElementById('output');
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      data.floor = Number(data.floor);
+      data.inspectionTarget = form.inspectionTarget.checked;
+      const response = await fetch('/api/lab/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      output.textContent = `status: ${response.status}\n\n${await response.text()}`;
+    });
+  </script>
 </body>
 </html>

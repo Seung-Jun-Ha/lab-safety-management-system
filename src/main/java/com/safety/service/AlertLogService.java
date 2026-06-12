@@ -2,6 +2,7 @@ package com.safety.service;
 
 import com.safety.model.AlertLog;
 import com.safety.repository.AlertLogRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
