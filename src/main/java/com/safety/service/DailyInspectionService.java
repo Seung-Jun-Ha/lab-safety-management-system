@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class DailyInspectionService {
 
     private final InspectionRepository inspectionRepository;
-    private final AlertLogService alertLogService; // 다른 조원이 만든 로그 서비스가 있다면 패키지 확인 필요
+    private final AlertLogService alertLogService; 
 
     public DailyInspectionService(InspectionRepository inspectionRepository, AlertLogService alertLogService) {
         this.inspectionRepository = inspectionRepository;
@@ -41,7 +41,7 @@ public class DailyInspectionService {
 
         DailyInspection saved = inspectionRepository.save(dailyInspection);
 
-        // 요구사항: 성공 시 alertLogService 호출
+
         alertLogService.createLog("신규 일상점검 등록 완료", "INSPECTION");
 
         return new DailyInspectionResponseDto(

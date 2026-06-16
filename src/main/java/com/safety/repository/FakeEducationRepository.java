@@ -7,7 +7,7 @@ import java.util.List;
 
 @Repository
 public class FakeEducationRepository {
-    // 가상 데이터베이스 역할을 하는 메모리 리스트
+
     private final List<ResearcherCategory> store = new ArrayList<>();
 
     public ResearcherCategory save(ResearcherCategory category) {

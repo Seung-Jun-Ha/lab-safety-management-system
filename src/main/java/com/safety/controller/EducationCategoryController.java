@@ -1,12 +1,12 @@
 package com.safety.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import com.safety.model.ResearcherCategoryRegisterDto;
 import com.safety.model.ResearcherCategoryResponseDto;
 import com.safety.service.EducationCategoryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/education/categories")

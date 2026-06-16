@@ -1,11 +1,11 @@
 package com.safety.controller;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import com.safety.model.EducationSearchCriteria;
 import com.safety.model.ResearcherCategoryResponseDto;
 import com.safety.service.EducationQueryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
